@@ -1,0 +1,89 @@
+# Game Room — Waiting
+
+**Route**: `/room/[roomId]`
+**Purpose**: Players gather before game starts. Host has controls.
+
+## Layout (Desktop)
+
+```
++──────────────────────────────────────────────────────────┐
+│  ← [Quay lại]     Phòng: 482931  [Mời bạn 📋]           │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  +────────────────────────────────────────────────────+  │
+│  │              PHÒNG CHỜ                               │  │
+│  │                                                    │  │
+│  │   ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐            │  │
+│  │   │Minh │   │Lan  │   │ — │   │ — │            │  │
+│  │   │HOST │   │     │   │     │   │     │            │  │
+│  │   │  ●  │   │  ●  │   │  ○  │   │  ○  │            │  │
+│  │   └─────┘   └─────┘   └─────┘   └─────┘            │  │
+│  │   ghế 1    ghế 2    ghế 3    ghế 4               │  │
+│  │                                                    │  │
+│  │   [Đang chờ người chơi...]                        │  │
+│  │                                                    │  │
+│  │   ┌────────────────────────────────────────────┐  │  │
+│  │   │           [BẮT ĐẦU]  ← chỉ host thấy     │  │  │
+│  │   └────────────────────────────────────────────┘  │  │
+│  │                                                    │  │
+│  │   "Mời bạn bè bằng link: lieng-trung.vercel.app/  │  │
+│  │    room/482931"                                   │  │
+│  │                                        [📋 Copy] │  │
+│  └────────────────────────────────────────────────────+  │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+## Layout (Mobile 375px)
+
+```
++────────────────────────────┐
+│ ← Quay lại    Phòng:482931│
+│              [📋Mời bạn]  │
++────────────────────────────┤
+│                            │
+│  ┌──────────────────────┐  │
+│  │      PHÒNG CHỜ       │  │
+│  │                      │  │
+│  │  ○1    ○2    ○3    ○4│  │
+│  │  ghế   ghế   ghế   ghế│  │
+│  │                      │  │
+│  │  [Đang chờ...]       │  │
+│  └──────────────────────┘  │
+│                            │
+│  ┌──────────────────────┐  │
+│  │                      │  │
+│  │    [BẮT ĐẦU]         │  │
+│  │                      │  │
+│  └──────────────────────┘  │
+│                            │
+│  Link: .../room/482931    │
+│  [📋 Copy]                │
+└────────────────────────────┘
+```
+
+## Elements
+
+| Element | Description | Behavior |
+|---------|-------------|----------|
+| BackBtn | "← Quay lại" | Leave room, return to lobby |
+| RoomCode | 6-digit display + copy btn | Click copies to clipboard |
+| PlayerSlot | Avatar circle with name | Filled = joined, empty = waiting |
+| StartBtn | "Bắt đầu" | Host only — starts game when 2+ players |
+| ShareLink | Link display + copy button | Auto-copies share URL |
+| WaitingMsg | "Đang chờ người chơi..." | Shows when < 2 players |
+
+## States
+
+- **Default**: Waiting for players. Start button disabled until 2+ joined.
+- **Ready**: 2+ players joined. Start button enabled (host only).
+- **Starting**: Host clicked Start — button shows spinner + "Đang bắt đầu..."
+- **Full**: All 4 slots filled — "Phòng đã đầy" shown.
+- **Error**: Error toast on failure to start.
+
+## Key Interactions
+
+- **Host clicks "Bắt đầu"** → POST /api/games → `game_started` Socket event → all clients transition to Playing state
+- **Copy link** → `navigator.clipboard.writeText` → toast "Đã copy!"
+- **Player joins** → `room_update` event → player slots update in real-time
+- **Click on empty slot** → no action (can't drag into slot)

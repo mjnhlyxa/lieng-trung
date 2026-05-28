@@ -1,0 +1,15 @@
+{
+  "name": "lieng-trung",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "scripts": {
+    "dev": "bun --filter web dev",
+    "dev:api": "bun --filter api uvicorn apps.api.main:app --reload --port 8000",
+    "build": "bun --filter web build",
+    "test": "bun --filter web test"
+  }
+}
