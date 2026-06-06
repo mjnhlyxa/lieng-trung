@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "bun --filter web dev",
     "dev:api": "bun --filter api uvicorn apps.api.main:app --reload --port 8000",
-    "build": "bun --filter web build && cp -r apps/.next .",
+    "build": "bun --filter web build",
     "test": "bun --filter web test"
   },
   "dependencies": {
