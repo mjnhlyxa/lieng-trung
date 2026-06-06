@@ -132,7 +132,7 @@ export default function RoomPage() {
 
   const isHost = room?.host_id === playerId;
   const isMyTurn = game?.players?.[game.current_turn_index]?.id === playerId;
-  const isPlaying = game?.phase !== "waiting" && game?.phase !== "lobby";
+  const isPlaying = game && game.phase !== "waiting";
   const showdownOpen = game?.phase === "showdown" && store.showShowdown;
   const myPlayer = game?.players.find(p => p.id === playerId);
   const minBet = game?.min_bet || 10;
@@ -187,14 +187,14 @@ export default function RoomPage() {
           </div>
 
           <p className="text-text-secondary text-sm mb-6">
-            {room?.players?.length < 2 ? "Đang chờ người chơi..." : "Sẵn sàng bắt đầu!"}
+            {room?.players?.length === 0 ? "Đang chờ người chơi..." : "Sẵn sàng bắt đầu!"}
           </p>
 
           {isHost ? (
             <Button
               variant="primary"
               size="lg"
-              disabled={(room?.players?.length || 0) < 2}
+              disabled={!room?.players || room.players.length < 2}
               onClick={handleStartGame}
             >
               {(room?.players?.length || 0) < 2 ? "Chờ thêm..." : "Bắt đầu!"}

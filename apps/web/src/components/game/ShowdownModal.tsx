@@ -2,6 +2,7 @@
 import React from "react";
 import { Modal, Button } from "@/components/ui";
 import { CardHand } from "./CardHand";
+import { evaluate } from "@/lib/hand_eval";
 
 interface PlayerHand {
   playerId: string;
@@ -26,8 +27,6 @@ const HAND_NAMES: Record<number, string> = {
   9: "Tứ Quý", 8: "Sảnh Rồng", 7: "Sảnh", 6: "Ba Túc",
   5: "Bộ Đôi", 4: "Một Đôi", 3: "Mậu Thầu",
 };
-
-const { evaluate } = evalHand();
 
 export function ShowdownModal({
   isOpen, winnerId, hands, players, pot, onRematch, onLeave

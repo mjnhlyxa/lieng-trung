@@ -123,7 +123,7 @@ export default function LobbyPage() {
                     ))}
                   </div>
                 </div>
-                <Button variant="primary" size="lg" style={{ width: "100%" }} onClick={handleCreate} loading={creating}>
+                <Button variant="primary" size="lg" className="w-full" onClick={handleCreate} loading={creating}>
                   Tạo phòng
                 </Button>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Card } from "@/components/ui/Card";
+import { PlayingCard } from "@/components/ui/Card";
 
 interface CardHandProps {
   cards: string[];
@@ -15,7 +15,7 @@ export function CardHand({ cards, hidden = false, size = "md", scrollable = fals
     return (
       <div className={`flex gap-1 ${scrollable ? "overflow-x-auto" : "flex-wrap"}`}>
         {[0, 1, 2, 3, 4].map(i => (
-          <Card key={i} rank="" suit="" faceDown size={size} />
+          <PlayingCard key={i} rank="" suit="" faceDown size={size} />
         ))}
       </div>
     );
@@ -26,7 +26,7 @@ export function CardHand({ cards, hidden = false, size = "md", scrollable = fals
       {cards.slice(0, 5).map((card, i) => {
         const suitCode = card[card.length - 1];
         const rank = card.slice(0, -1);
-        return <Card key={i} rank={rank} suit={suitCode} size={size} />;
+        return <PlayingCard key={i} rank={rank} suit={suitCode} size={size} />;
       })}
     </div>
   );

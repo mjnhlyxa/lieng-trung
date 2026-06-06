@@ -11,5 +11,9 @@
     "dev:api": "bun --filter api uvicorn apps.api.main:app --reload --port 8000",
     "build": "bun --filter web build",
     "test": "bun --filter web test"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "uuid": "^14.0.0"
   }
 }

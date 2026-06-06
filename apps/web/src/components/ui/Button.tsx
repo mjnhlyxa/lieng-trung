@@ -7,6 +7,7 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   className?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
   children: React.ReactNode;
   type?: "button" | "submit";
@@ -18,6 +19,7 @@ export function Button({
   loading = false,
   disabled = false,
   className = "",
+  style,
   onClick,
   children,
   type = "button",
@@ -39,6 +41,7 @@ export function Button({
     <button
       type={type}
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+      style={style}
       onClick={onClick}
       disabled={disabled || loading}
     >

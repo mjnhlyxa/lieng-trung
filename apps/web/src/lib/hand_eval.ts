@@ -37,7 +37,7 @@ export function evaluateHand(cards: string[]): [number, number[]] {
   if (counts[0] === 4) return [9, [distinct[0], ...distinct.slice(1)]];
   if (counts[0] === 3 && counts[1] === 2) return [6, [distinct[0], distinct[1]]];
   if (counts[0] === 2 && counts[1] === 2) return [5, [distinct[0], distinct[1], distinct[2]]];
-  if (counts[0] === 2) return [4, [distinct[0], ...distinct.slice(1)];
+  if (counts[0] === 2) return [4, [distinct[0], ...distinct.slice(1)]];
   return [3, ranks.sort((a, b) => b - a)];
 }
 

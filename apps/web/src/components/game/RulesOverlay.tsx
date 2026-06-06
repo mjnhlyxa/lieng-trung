@@ -58,7 +58,7 @@ export function RulesOverlay({ isOpen, onClose }: RulesOverlayProps) {
             <div className="space-y-3 text-sm">
               <p>🏆 <strong>Thắng:</strong> Khi tất cả người chơi khác bỏ bài.</p>
               <p>🃏 <strong>Showdown:</strong> So bài nếu không ai bỏ trước.</p>
-              <p>♠️ <strong>Chất:</strong> Spades > Hearts > Diamonds > Clubs là chất cao nhất.</p>
+              <p>♠️ <strong>Chất:</strong> Spades &gt; Hearts &gt; Diamonds &gt; Clubs là chất cao nhất.</p>
             </div>
           )}
         </div>
